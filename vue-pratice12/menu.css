@@ -1,0 +1,43 @@
+body {
+    width: 600px;
+}
+
+a {
+    text-decoration: none;
+    display: block;
+    color: #fff;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #fff;
+    border-width: 1px 1px 0 0;
+    background: #255f9e;
+}
+
+li {
+    list-style-type: none;
+}
+
+#app > li {
+    list-style-type: none;
+    float: left;
+    text-align: center;
+    position: relative;
+}
+
+#app li:hover {
+    color: #fff;
+    background: #ffb100;
+}
+
+#app li ul {
+    position: absolute;
+    left: -40px;
+    top: 40px;
+    margin-top: 1px;
+    font-size: 12px;
+}
+
+[v-cloak] {
+    display: none;
+}

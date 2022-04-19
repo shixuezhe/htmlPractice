@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <link type="text/css" rel="stylesheet" href="">
+    <title>预加载图片</title>
+    <style>
+        div {
+            width: 567px;
+            height: 567px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-img="'../img/1.jpeg'"></div>
+    </div>
+    <script type="text/javascript">
+        Vue.directive('img', {
+            inserted: function(el, binding){
+                // 先弄个随机色给元素
+                let color = Math.floor(Math.random() * 1000000);
+                el.style.backgroundColor = "#" + color;
+                let img = new Image();
+                img.src = binding.value;
+                // 图片加载完成再赋值给元素
+                img.onload = function() {
+                    el.style.backgroundImage = 'url(' + binding.value + ')';
+                }
+            }
+        })
+        new Vue({
+            el: "#app"
+        })
+    </script>
+</body>
+</html>
