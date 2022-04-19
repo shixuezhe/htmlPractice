@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 600px;
+    margin: 20px auto;
+}
+
+td {
+    text-align: center;
+}
+
+.main {
+    width: 600px;
+    height: 300px;
+}
+
+.title {
+    font-size: 24px;
+    color: #000;
+    font-weight: 600;
+    height: 40px;
+    width: 100%;
+}
+
+.smallTitle {
+    width: 120px;
+    font-size: 15px;
+}
+
+.name,.nation,.major{
+    height: 40px;
+}
+
+.ip1 {
+    width: 140px;
+    height: 40px;
+    border: 0;
+}
+
+input:focus {
+    border: 1px solid red;
+}
+
+.picContainer {
+    width: 100px;
+}
+
+.pic {
+    width: 90px;
+    height: 110px;
+}
