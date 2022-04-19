@@ -13,7 +13,7 @@ td {
 
 .main {
     width: 600px;
-    height: 300px;
+    height: 480px;
 }
 
 .title {
@@ -22,6 +22,7 @@ td {
     font-weight: 600;
     height: 40px;
     width: 100%;
+    text-align: center;
 }
 
 .smallTitle {
@@ -39,8 +40,16 @@ td {
     border: 0;
 }
 
-input:focus {
-    border: 1px solid red;
+input {
+    outline-color: red;
+    color: blue;
+    padding: 0 10px;
+    overflow: clip;
+    text-overflow: ellipsis;
+}
+
+textarea {
+    outline-color: red;
 }
 
 .picContainer {
@@ -50,4 +59,10 @@ input:focus {
 .pic {
     width: 90px;
     height: 110px;
+}
+
+.ip2 {
+    width: 510px;
+    height: 170px;
+    border: 0;
 }
