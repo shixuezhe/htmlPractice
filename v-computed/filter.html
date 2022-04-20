@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <title>充当判断工具</title>
+</head>
+<body>
+    <div id="app">
+        <h1>水果：</h1>
+        <ul>
+            <li v-for="item in waterFood">
+                {{ item.name }}
+            </li>
+        </ul>
+        <h1>其他：</h1>
+        <ul>
+            <li v-for="item in others">
+                {{ item.name }}
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                items: [
+                    {name:"香蕉", isWater: true},
+                    {name:"电视机", isWater: false},
+                    {name:"苹果", isWater: true},
+                    {name:"瓜子", isWater: false},
+                    {name:"凤梨", isWater: true}
+                ]
+            },
+            computed: {
+                waterFood: function() {
+                    return this.items.filter(x => x.isWater)
+                },
+                others: function() {
+                    return this.items.filter(x => !x.isWater)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
