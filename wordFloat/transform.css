@@ -1,0 +1,104 @@
+body {
+    background: black;
+}
+
+.container {
+    perspective: 1600px;
+
+}
+
+.wrap {
+    transform-style: preserve-3d;
+    transform: rotateX(30deg) rotateY(30deg);
+    width: 200px;
+    height: 200px;
+    margin: 250px auto;
+    position: relative;
+    /* animation: donghua 8s linear infinite; */
+
+}
+
+@keyframes donghua {
+    0% {
+        transform: rotateX(30deg) rotateY(30deg);
+    }
+
+    100% {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
+
+.wrap div {
+    width: 210px;
+    height: 210px;
+    position: absolute;
+    border: 1px solid yellow;
+    background-color: black;
+    box-shadow: 0 0 20px 2px yellow;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    line-height: 210px;
+    text-shadow: 5px 5px 20px red;
+    opacity: 0.5;
+}
+
+.box1 {
+    background: red;
+    transform: translateZ(105px);
+}
+
+.box2 {
+    background: orange;
+    transform: translateZ(-105px);
+}
+
+.box3 {
+    background: blue;
+    transform: translateX(105px) rotateY(90deg);
+}
+
+.box4 {
+    background: green;
+    transform: translateX(-105px) rotateY(90deg);
+}
+
+.box5 {
+    background: cyan;
+    transform: translateY(-105px) rotateX(90deg);
+}
+
+.box6 {
+    background: purple;
+    transform: translateY(105px) rotateX(90deg);
+}
+
+.box7 {
+    background: red;
+    transform: translateZ(35px);
+}
+
+.box8 {
+    background: orange;
+    transform: translateZ(-35px);
+}
+
+.box9 {
+    background: blue;
+    transform: translateX(35px) rotateY(90deg);
+}
+
+.box10 {
+    background: green;
+    transform: translateX(-35px) rotateY(90deg);
+}
+
+.box11 {
+    background: cyan;
+    transform: translateY(-35px) rotateX(90deg);
+}
+
+.box12 {
+    background: purple;
+    transform: translateY(35px) rotateX(90deg);
+}
