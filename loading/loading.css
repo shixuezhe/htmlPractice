@@ -3,12 +3,13 @@
 }
 body {
     width: 300px;
-    margin: 50px auto;
+    margin: 0px auto;
 }
 
 h3 {
     width: 100%;
     text-align: center;
+    margin: 30px 0;
 }
 
 .con1 {
@@ -134,4 +135,48 @@ h3 {
     left: 10px;
     animation-delay: -0.105s;
 
+}
+
+.box{
+    margin: 0 auto;
+    position:relative;
+    width:100px;
+    height:100px;
+    animation:loading3 3s linear infinite;
+}
+
+@keyframes loading3 {
+    100% {
+        transform:rotate(360deg)
+    }
+}
+
+.box1{
+    position:absolute;
+    width: 50px;
+    height: 100px;
+    border-radius:50px 0 0 50px;
+    background: linear-gradient(to bottom,#999, #d0cfcf);
+    z-index:1;
+}
+
+.box2{
+    position:absolute;
+    width: 50px;
+    height: 100px;
+    border-radius:0 50px 50px 0;
+    left:50%;
+    background: linear-gradient(#eee,#d0cfcf);
+    z-index:1;
+}
+
+.box3{
+    position:absolute;
+    width:92px;
+    height:92px;
+    top:4px;
+    left:4px;
+    border-radius:50%;
+    background-color: white;
+    z-index:2;
 }
