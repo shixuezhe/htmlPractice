@@ -21,7 +21,7 @@ body {
         transform: rotateX(0deg) rotateY(0deg);
     }
     100% {
-        transform: rotateX(360deg) rotate(360deg);
+        transform: rotateX(360deg) rotateY(360deg);
     }
 }
 
