@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <li v-for="item in items">
+            <span>姓名：{{ item.name }}</span>
+            <span>年龄：{{ item.age }}</span>
+            <button @click="add(item)">年龄加1</button>
+        </li>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                items:[]
+            },
+            mounted: function() {
+                axios.get('https://v4rel.h5sys.cn/api/10963312/getDatas',
+                {params:{
+                    limit: 10,
+                    offset: 1
+                }}).then(res => {
+                    this.items = res.data.data;
+                    console.log(res)
+                })
+            },
+            methods: {
+                add: function(value){
+                    axios.post('https://v4rel.h5sys.cn/api/10963312/addOrEditData',{
+                        id: value.数据ID,
+                        name: value.name,
+                        age: value.age+1,
+                        pic: value.pic,
+                        detail: value.detail
+                        }).then(res => {
+                            if(res.status != 200){
+                                console.log(res.request.response.msg)
+                            }else{
+                                if(res.data.code==200){
+                                    console.log('更新成功')
+                                }else{
+                                    console.log(res.data.msg)
+                                }
+                            }
+                        })
+                    }
+                }
+            })
+    </script>
+</body>
+</html>
