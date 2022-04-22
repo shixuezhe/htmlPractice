@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="">
+    </script>
+    <title>异步执行顺序</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        async function async1() {
+            console.log("async1 strat");
+            await async2();
+            console.log("async1 end");
+        }
+
+        async function async2() {
+            console.log('async2')
+        }
+
+        console.log("yes");
+
+        setTimeout(function () {
+            console.log("setTimeout");
+
+        }, 0);
+
+        async1();
+
+        new Promise(function (resolve) {
+            console.log("promise start");
+            resolve();
+
+        }).then(function () {
+            console.log("resolve");
+
+        });
+
+        console.log("all end");
+
+    </script>
+</body>
+
+</html>

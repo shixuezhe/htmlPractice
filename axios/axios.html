@@ -13,7 +13,10 @@
 <body>
     <div id="app" v-cloak>
         <li v-for="item in items">
+            <!-- <img src="item.pic" style="width: 60px;height: 60px;border-radius: 50%;"> -->
+            <br>
             <span>姓名：{{ item.name }}</span>
+            <br>
             <span>年龄：{{ item.age }}</span>
             <button @click="add(item)">年龄加1</button>
         </li>
@@ -49,7 +52,9 @@
                                 console.log(res.request.response.msg)
                             }else{
                                 if(res.data.code==200){
-                                    console.log('更新成功')
+                                    this.items.forEach(x => {if(x.数据ID==value.数据ID){
+                                        x.age += 1
+                                    }})
                                 }else{
                                     console.log(res.data.msg)
                                 }
