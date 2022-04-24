@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="form1.css"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form action="#" method="post">
+            <table>
+                <tr>
+                    <td class="title">账户：</td>
+                    <td><input name="username" type="text" placeholder="username"></td>
+                </tr>
+                <tr>
+                    <td class="title">密码：</td>
+                    <td>
+                        <input name="password" type="text" placeholder="">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">性别：</td>
+                    <td>
+                        <input type="radio" name="sex" checked><span>男 </span>
+                        <input type="radio" name="sex"><span>女</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">爱好：</td>
+                    <td>
+                        <input type="checkbox" name="favor"><span>吃 </span>
+                        <input type="checkbox" name="favor" checked><span>喝 </span>
+                        <input type="checkbox" name="favor" checked><span>玩 </span>
+                        <input type="checkbox" name="favor" checked><span>乐</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">性格：</td>
+                    <td>
+                        <select name="nature">
+                            <option value="1">聪明伶俐</option>
+                            <option value="2" selected>漂亮大方</option>
+                        </section>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">颜色：</td>
+                    <td name="color">
+                        <div class="colorContainer">
+                            <span class="color"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">邮箱：</td>
+                    <td><input type="email"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button>提交</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>
