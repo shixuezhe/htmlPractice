@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制文本</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="200"></canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        if(canvas.getContext){
+            var ctx = canvas.getContext('2d')
+        }
+        ctx.font = 'Bold 20px Arial';   //字体
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#333';
+        ctx.fillText('Hello!', 320, 50);  //实心字
+        ctx.textAlign = 'center';
+        ctx.strokeStyle = 'red';
+        ctx.strokeText('Hello!', 320, 80);   //空心字
+        ctx.textAlign = 'right';
+        ctx.strokeStyle = 'green';
+        ctx.strokeText('Hello!', 320, 110)
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制矩形</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="200"></canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        if(canvas.getContext){
+            var ctx = canvas.getContext('2d')
+        }
+        ctx.fillStyle = 'yellow';
+        //实现实心矩形，参数分别是起点位置x,y和宽高
+        ctx.fillRect(50,50,200,100);
+        //实现空心矩形，参数同上
+        // ctx.strokeRect(50,50,200,100)
+        ctx.clearRect(100,50,50,50);   //清除一块
+    </script>
+</body>
+</html>

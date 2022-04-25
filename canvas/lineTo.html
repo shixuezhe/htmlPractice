@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制直线</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="200">
+        你的浏览器不支持canvas！
+    </canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        if(canvas.getContext){
+            var ctx = canvas.getContext('2d')
+        }
+        ctx.beginPath();  //开始划线
+        ctx.moveTo(40,20);  //起点位置
+        ctx.lineTo(60,20);  //绘制直线到这个位置
+        ctx.lineTo(60,40);
+        ctx.lineTo(40,40);
+        // ctx.lineTo(40,20);
+        ctx.closePath();
+        ctx.lineWidth = 1.0;   //线宽
+        ctx.strokeStyle = "#cc0000";   //设置线颜色，未着色
+        ctx.stroke();  //开始着色
+    </script>
+</body>
+</html>

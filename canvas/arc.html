@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制圆形和扇形</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="1200" height="800"></canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        if(canvas.getContext){
+            var ctx = canvas.getContext('2d')
+        }
+        // arc(x, y, radius, startAngle, endAngle, anticlockwise)方法用来绘制
+        // 扇形,x和y参数是圆心坐标，radius是半径，startAngle和endAngle则是扇形的起始
+        // 角度和终止角度（以弧度表示），anticlockwise表示做图时应该逆时针画true,
+        // 还是顺时针画false(默认)。
+        ctx.beginPath();
+        ctx.arc(50,50,50,0, Math.PI*2, true);
+        ctx.fillStyle = '#000';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(50,150,50,0,Math.PI*2, true);
+        ctx.lineWidth = 2.0;
+        ctx,strokeStyle = 'red';
+        ctx.stroke();
+
+        for(var i=0; i < 10;i++){
+            ctx.beginPath();
+            ctx.arc(150+i*100,50,40,0,2*Math.PI*(i+1)/10,false)
+            // ctx.closePath();
+            ctx.stroke();
+        }
+
+        for(var i=0;i<10;i++){
+            ctx.beginPath();
+            ctx.arc(150+i*100,180,40,0,2*Math.PI*(i+1)/10,true);
+            ctx.closePath();
+            ctx.stroke();
+        }
+
+        for(var i=0; i < 10;i++){
+            ctx.beginPath();
+            ctx.arc(150+i*100,300,40,0,2*Math.PI*(i+1)/10,false)
+            // ctx.closePath();
+            ctx.fill();
+        }
+    </script>
+</body>
+</html>

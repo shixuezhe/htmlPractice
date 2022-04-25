@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>线性渐变</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="800"></canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        if(canvas.getContext){
+            var ctx = canvas.getContext('2d')
+        }
+        // createLinearGradient(x1, y1, x2, y2)用来设置渐变色,其中x1和y1是
+        // 起点坐标，x2和y2是终点坐标。通过不同的坐标值，可以生成从上至下、从左到右
+        // 的渐变等等。使用该对象作为 strokeStyle 或 fillStyle 属性的值,可用于填充
+        // 矩形、圆形、线条、文本等等。使用 addColorStop()方法规定不同的颜色，以及在
+        // gradient 对象中的何处定位颜色
+        var my_gradient = ctx.createLinearGradient(50,0,300,0);
+        my_gradient.addColorStop(0,'black');
+        my_gradient.addColorStop(0.5,'red');
+        my_gradient.addColorStop(1,'white');
+        ctx.fillStyle = my_gradient;
+        ctx.strokeStyle = my_gradient;
+        ctx.fillRect(50,50,300,150);
+        ctx.moveTo(50,220);
+        ctx.lineTo(350,220);
+        ctx.stroke();
+        ctx.textAlign = 'left';
+        ctx.fillText('Hello!Hello!Hello!Hello!Hello!Hello!Hello!Hello!Hello!',50,250)
+    </script>
+</body>
+</html>

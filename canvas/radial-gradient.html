@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圆形渐变</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="800"></canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        if(canvas.getContext){
+            var ctx = canvas.getContext('2d')
+        }
+        // createRadialGradient(x0,y0,r0,x1,y1,r1) 方法创建放射状/圆形渐变对象,
+        // x0渐变的开始圆的 x 坐标;y0渐变的开始圆的 y 坐标; r0开始圆的半径;
+        // x1渐变的结束圆的 x 坐标;y1渐变的结束圆的 y 坐标;r1结束圆的半径
+        var radialGrad = ctx.createRadialGradient(200,200,0,200,200,250);
+        radialGrad.addColorStop(0.0,'white');
+        radialGrad.addColorStop(0.25,'yellow');
+        radialGrad.addColorStop(0.5,'green');
+        radialGrad.addColorStop(0.75,'blue');
+        radialGrad.addColorStop(1.0,'black');
+        ctx.fillStyle = radialGrad;
+        ctx.fillRect(0,0,400,400)
+    </script>
+</body>
+</html>
