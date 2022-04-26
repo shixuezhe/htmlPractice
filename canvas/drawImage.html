@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片处理</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="600" height="600"></canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        if(canvas.getContext){
+            var ctx = canvas.getContext('2d')
+        }
+        var image = new Image();
+        // 没有canvas的情况用这个
+        // image.onload = function() {
+        //     var canvas = document.createElement('canvas');
+        //     canvas.width = image.width;
+        //     canvas.height = image.height;
+        //     canvas.getContext('2d').drawImage(image,0,0);
+        //     document.body.appendChild(image);
+        //     return canvas
+        // }
+        image.onload = function() {
+            ctx.drawImage(image,0,0)
+        }
+        image.src = '../img/1.jpeg'
+    </script>
+</body>
+</html>
+<!-- Canvas允许将图像文件插入画布，做法是读取图片后，使用drawImage方法在画布内进行重绘。
+drawImage(img,sx,sy,swidth,sheight,x,y,width,height)
+img 规定要使用的图像、画布或视频。
+sx 可选。开始剪切的 x 坐标位置。
+sy 可选。开始剪切的 y 坐标位置。
+swidth 可选。被剪切图像的宽度。
+sheight 可选。被剪切图像的高度。
+x 在画布上放置图像的 x 坐标位置。
+y 在画布上放置图像的 y 坐标位置。
+width 可选。要使用的图像的宽度。（伸展或缩小图像）
+height 可选。要使用的图像的高度。（伸展或缩小图像） -->

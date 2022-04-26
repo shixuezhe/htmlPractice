@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>toDataURL</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="200"></canvas>
+    <img src="" id="myImage">
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        img = document.getElementById('myImage')
+        ctx.fillStyle = 'yellow';
+        ctx.fillRect(0,0,150,200);
+        var dataUrl = canvas.toDataURL('image/png');
+        console.log(dataUrl);
+        img.src = dataUrl;
+        // var mediumQuality = canvas.toDataURL('image/jpeg',0.5);
+        // var lowQuality = canvas.toDataURL('image/jpeg',0.1);
+    </script>
+</body>
+</html>
+
+<!-- 
+toDataURL(type, encoderOptions)
+type 可选,图片格式，默认为 image/png
+encoderOptions 可选,在指定图片格式为 image/jpeg 或 image/webp的情况下，
+可以从 0 到 1 的区间内选择图片的质量。如果超出取值范围，将会使用默认值 0.92。
+其他参数会被忽略。
+-->
