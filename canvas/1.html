@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>星空练习</title>
+</head>
+<body>
+	<canvas id="canvas" style="display:block;border: 1px solid #aaa;margin: 50px auto">该浏览器不支持canvas，请更换浏览器后再试</canvas>
+	<script type="text/javascript">
+ 
+		window.onload = function(){
+			var canvas = document.getElementById('canvas');
+			canvas.width = 1200;
+			canvas.height = 800;
+			var cxt = canvas.getContext('2d');
+ 
+			//线性渐变背景
+			// var skyStyle = cxt.createLinearGradient(0,0,0,canvas.height);
+			// skyStyle.addColorStop(0.0, 'black');
+			// skyStyle.addColorStop(1.0, '#035');
+ 
+			// cxt.fillStyle = skyStyle;
+			// cxt.fillRect(0,0,canvas.width,canvas.height);
+			
+			//径向渐变背景
+			var skyStyle = cxt.createRadialGradient(canvas.width/2,canvas.height,0,canvas.width/2,canvas.height,canvas.height);
+			skyStyle.addColorStop(0.0, '#035');
+			skyStyle.addColorStop(1.0, 'black');
+ 
+			cxt.fillStyle = skyStyle;
+			cxt.fillRect(0,0,canvas.width,canvas.height);
+ 
+ 
+ 
+ 
+ 
+			for (var i = 0; i < 200; i++) {
+				var r = Math.random()*5+5;//大圆半径为0-20
+				var x = Math.random()*canvas.width;
+				var y = Math.random()*canvas.height*0.65;
+				var a = Math.random()*360;
+				drawStar(cxt,r,x,y,a);
+			}
+ 
+			fillMoon(cxt, 2, 900, 200, 100, 30);
+            drawLand(cxt);
+						
+		}
+ 
+	function drawLand(cxt){
+			cxt.save();
+			cxt.beginPath();
+			cxt.moveTo(0, 600);
+			cxt.bezierCurveTo(540, 400, 600, 800, 1200, 600);
+			cxt.lineTo(1200,800);
+			cxt.lineTo(0,800);
+			cxt.closePath();
+ 
+			var landStyle = cxt.createLinearGradient(0,800,0,0);
+			landStyle.addColorStop (0.0, '#030');
+			landStyle.addColorStop (1.0, '#580');
+			cxt.fillStyle = landStyle;
+			cxt.fill();
+ 
+			cxt.restore();
+		}
+ 
+ 
+		function drawStar(cxt,R,x,y,rot){//rot表示旋转角度
+ 
+			cxt.save();
+ 
+			cxt.translate(x,y);
+			cxt.rotate(rot/180*Math.PI);
+			cxt.scale(R,R);
+ 
+			starPath(cxt)
+ 
+ 
+			cxt.fillStyle = '#fb3';
+			// cxt.strokeStyle = 'fd5';
+			// cxt.lineWidth = 3;
+			// cxt.lineJoin = 'round';
+ 
+ 
+			cxt.fill();
+			//cxt.stroke();
+ 
+			cxt.restore();
+ 
+		}
+ 
+		function starPath(cxt){//绘制一个标准的五角星
+			cxt.beginPath();
+			for (var i = 0; i < 5; i++) {
+				cxt.lineTo(Math.cos( (18+i*72)/180*Math.PI),
+					-Math.sin((18+i*72)/180*Math.PI));
+ 
+				cxt.lineTo(Math.cos( (54+i*72)/180*Math.PI)*0.5,
+					-Math.sin((54+i*72)/180*Math.PI)*0.5);
+ 
+			}
+			cxt.closePath();
+		}
+ 
+ 
+		function fillMoon(cxt, d, x, y, R, rot, /*optional*/fillColor){
+			cxt.save();
+			cxt.translate(x,y);
+			cxt.rotate(rot*Math.PI/180);
+			cxt.scale(R,R);
+			pathMoon(cxt, d);
+			cxt.fillStyle = fillColor || '#fb5';
+			cxt.fill();
+			cxt.restore();
+		}
+ 
+		function pathMoon(cxt, d){
+			cxt.beginPath();
+			cxt.arc(0, 0, 1, 0.5*Math.PI, 1.5*Math.PI, true);
+			cxt.moveTo(0, -1);
+			cxt.arcTo(d, 0, 0, 1, dis(0, -1, d, 0)/d);
+            // cxt.quadraticCurveTo(1.2,0,0,1);利用贝塞尔二次曲线绘制
+			cxt.closePath();
+		}
+ 
+ 
+		function dis(x1, y1, x2, y2){//直角三角形求取斜边
+			return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+		}
+	</script>
+</body>
+</html>

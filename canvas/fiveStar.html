@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五角星</title>
+</head>
+<body>
+    <canvas id="myCanvas" style="display: block;border: 1px solid #aaa;margin: 50px auto;"></canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        canvas.width = 1200;
+        canvas.height = 800;
+        var cs = canvas.getContext('2d');
+        var skyStyle = cs.createRadialGradient(canvas.width/2,canvas.height,0,canvas.width/2,canvas.height,canvas.height);
+        skyStyle.addColorStop(0,'#035');
+        skyStyle.addColorStop(1,'black');
+        cs.fillStyle = skyStyle;
+        cs.fillRect(0,0,canvas.width,canvas.height);
+        function stars(){
+            cs.beginPath();
+            for(var i=0;i<5;i++){
+                cs.lineTo(Math.cos((18+i*72)/180*Math.PI)*10,-Math.sin((18+i*72)/180*Math.PI)*10);
+                cs.lineTo(Math.cos((54+i*72)/180*Math.PI)*5,-Math.sin((54+i*72)/180*Math.PI)*5);
+            }
+            cs.closePath()
+        }
+        function drawStars(x,y,angle){
+            cs.save();
+            cs.translate(x,y);
+            cs.rotate(angle/180*Math.PI);
+            stars();
+            cs.fillStyle = '#fb3';
+            cs.fill();
+            cs.restore();
+        }
+        for(var i = 0;i<60;i++){
+            let x = Math.random()*1180+10;
+            let y = Math.random()*580+10;
+            let angle = Math.random()*360;
+            drawStars(x,y,angle)
+        }
+        function dis(x1, y1, x2, y2){
+            return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2))
+        }
+        function Moons(x,y) {
+            cs.beginPath();
+            cs.arc(x, y, 50, 0.5 * Math.PI, 1.5 * Math.PI, true);
+            cs.moveTo(x,y-50);
+            cs.arcTo(x+110, y, x, y+50, 50 * (dis(x, y-50, x+110, y) / (110)));
+        }
+        function drawMoons(x,y,angle){
+            cs.save();
+            cs.rotate(angle*Math.PI/180)
+            Moons(x,y);
+            cs.fillStyle = '#D9D919';
+            cs.fill();
+            cs.restore()
+            
+        }
+        drawMoons(800,0,18);
+        function drawLand() {
+            cs.save();
+            cs.beginPath();
+            cs.moveTo(0,600);
+            cs.bezierCurveTo(540,400,600,800,1200,600);
+            cs.lineTo(1200,800);
+            cs.lineTo(0,800);
+            cs.closePath();
+            var landStyle = cs.createLinearGradient(0,800,0,0);
+            landStyle.addColorStop(0.0,'#030');
+            landStyle.addColorStop(1.0,'#580');
+            cs.fillStyle = landStyle;
+            cs.fill();
+        }
+        drawLand();
+    </script>
+</body>
+</html>
+<!-- 
+arcTo(x1,y1,x2,y2,radius);arcTo的参数中包括两个点(x1,y1) (x2,y2)，radius半径。
+起点和第一个控制点组成的延长线与第一个控制点和第二个控制点组成的延长线都是和圆弧相切的. 
+-->
