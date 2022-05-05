@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <link type="text/css" rel="stylesheet" href="">
+    <title>监听4</title>
+</head>
+<body>
+    <div id="app">
+        年龄：<input type="text" v-model="person.age">
+        <p v-if="info">{{ info }}</p>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                person: {
+                    name: 'lisa',
+                    age: 0
+                },
+                info: ''
+            },
+            watch: {
+                person: {
+                    handler: function(val, oldVal){
+                        this.info = val.age>=18?'已成年':'未成年'
+                    },
+                    deep: true,
+                    // immediate: true
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <link type="text/css" rel="stylesheet" href="">
+    <title>购物车</title>
+    <style>
+        body {
+            width: 600px;
+        }
+        table {
+            border: 1px solid black;
+        }
+        table {
+            width: 100%;
+        }
+        th {
+            height: 50px;
+        }
+        th,td {
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        span {
+            float: right;
+        }
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <table>
+            <tr>
+                <th>序号</th>
+                <th>名称</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>金额</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(book,index) in books" :key="book.id">
+                <td> {{ book.id }}</td>
+                <td> {{ book.title }}</td>
+                <td> {{ book.price }}</td>
+                <td>
+                    <button v-bind:disabled="book.count === 0" @click="book.count -= 1">-</button>
+                    {{ book.count }}
+                    <button @click="book.count += 1">+</button>
+                </td>
+                <td>
+                    {{ itemPrice(book.price, book.count)}}
+                </td>
+                <td>
+                    <button @click="deleteItem(book.id)">删除</button>
+                </td>
+            </tr>
+        </table>
+        <span>总价：¥ {{ totalPrice }}</span>
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el: "#app",
+            data: {
+                books: [
+                    {
+                        id:1,
+                        title:"一剪梅",
+                        price: 10,
+                        count: 1
+                    },
+                    {
+                        id:2,
+                        title:"唐诗三百首",
+                        price: 20,
+                        count: 4
+                    },
+                    {
+                        id:3,
+                        title:"宋词",
+                        price: 30,
+                        count: 0
+                    },
+                    {
+                        id:4,
+                        title:"轻功语录",
+                        price: 40,
+                        count: 0
+                    },
+                ]
+            },
+            methods: {
+                itemPrice(price, count){
+                    return price*count
+                },
+                deleteItem(id){
+                    let index = this.books.findIndex(x => x.id==id);
+                    this.books.splice(index,1)
+                }
+            },
+            computed: {
+                totalPrice(){
+                    return eval((this.books.map(x => x.count*x.price)).join('+'))
+                }
+            }
+        })
+    </script>
+</body>
+</html>

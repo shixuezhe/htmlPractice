@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <link type="text/css" rel="stylesheet" href="">
+    <title>监听1</title>
+</head>
+<body>
+    <div id="app">
+        千米：<input type="text" v-model="kilometers">
+        米：<input type="text" v-model="meters">
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el: "#app",
+            data: {
+                kilometers: 0,
+                meters: 0
+            },
+            watch: {
+                kilometers: function(val){
+                    this.meters = val * 1000
+                },
+                meters: function(val, oldVal){
+                    this.kilometers = val/1000
+                }
+            }
+        })
+    </script>
+</body>
+</html>
