@@ -1,0 +1,283 @@
+.wrapper * {
+    box-sizing: border-box;
+}
+
+.wrapper > div {
+    height: 250px;
+    width: 250px;
+    border: 1px solid #ccc;
+    background: #000;
+    margin: 10px;
+    float: left;
+    color: #D9D9D9;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+/*基础用法1*/
+
+.base1:before {
+    content: "我是::before";
+    color: #FB0D0D;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.base1:after {
+    content: "我是::after";
+    color: #f70;
+}
+
+/*基础用法2*/
+
+.base2:before {
+    content: '\ABCD\ABCD\ABCD\ABCD';
+    white-space: pre;
+    color: #FB0D0D;
+}
+
+.base2:after {
+    content: '\609\609\609\609\609';
+    white-space: pre;
+    color: #f70;
+}
+
+/*::before , ::after添加背景图*/
+
+.base3:before {
+    content: url(../img/3.png);
+}
+
+.base3:after {
+    content: url(../img/4.png);
+}
+
+/*取自定义属性*/
+
+.base4:before {
+    content: attr(title);
+    color: #E8E3AA;
+}
+
+.base4:after {
+    content: attr(data-test);
+    color: #D8CF23;
+}
+
+/*小试身手合集*/
+
+.base5,
+.base6,
+.base7,
+.base8 {
+    position: relative;
+}
+
+/*小试身手1*/
+
+.base5:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 50px;
+    border-top: 5px solid #f70;
+    border-left: 5px solid #f70;
+}
+
+.base5:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+    width: 50px;
+    border-right: 5px solid #f70;
+    border-bottom: 5px solid #f70;
+}
+
+/*小试身手2*/
+
+.base6:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: -webkit-linear-gradient(45deg, rgba(75, 65, 45, .3), rgba(123, 456, 789, .3), rgba(854, 183, 729, .3));
+    background: linear-gradient(45deg, rgba(75, 65, 45, .3), rgba(123, 456, 789, .3), rgba(854, 183, 729, .3));
+    z-index: 1;
+}
+
+.base6:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: -webkit-linear-gradient(-45deg, rgba(50, 125, 55, .7), rgba(55, 3, 45, .5), rgba(99, 12, 3, .8));
+    background: linear-gradient(-45deg, rgba(50, 125, 55, .7), rgba(55, 3, 45, .5), rgba(99, 12, 3, .8));
+    z-index: 1;
+}
+
+/*小试身手3*/
+
+.base7:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: circle 2s ease-in-out infinite;
+    -moz-animation: circle 2s ease-in-out infinite;
+    -ms-animation: circle 2s ease-in-out infinite;
+    -o-animation: circle 2s ease-in-out infinite;
+    animation: circle 2s ease-in-out infinite;
+    background: #C3172C;
+}
+
+.base7:after {
+    content: "";
+    display: block;
+    position: absolute;
+    content: "";
+    background: #14965E;
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: circle 2s ease-in-out infinite;
+    -moz-animation: circle 2s ease-in-out infinite;
+    -ms-animation: circle 2s ease-in-out infinite;
+    -o-animation: circle 2s ease-in-out infinite;
+    animation: circle 2s ease-in-out infinite;
+}
+
+/*小试身手4*/
+
+.base8:before {
+    content: "1";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 10px;
+    background: #6F0ECF;
+    left: 0;
+    top: 0;
+    margin-left: -10px;
+}
+
+.base8:hover:before {
+    background: #9F81DE;
+    -webkit-transform: rotate(-90deg) translate(-30%, 30%);
+    transform: rotate(-90deg) translate(-30%, 30%);
+    -webkit-transition: all 2s ease-in;
+    transition: all 2s ease-in;
+}
+
+.base8:after {
+    content: ".";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 10px;
+    background: #6F0ECF;
+    right: 0;
+    bottom: 0;
+    margin-right: -10px;
+}
+
+.base8:hover:after {
+    background: #9F81DE;
+    -webkit-transform: rotate(-90deg) translate(-30%, 30%);
+    transform: rotate(-90deg) translate(-30%, 30%);
+    -webkit-transition: all 2s ease-in;
+    transition: all 2s ease-in;
+}
+
+@-webkit-keyframes circle {
+    from {
+        border-radius: 0%;
+        top: 0;
+    }
+
+    35% {
+        background: #2B2FDC;
+        left: 30%;
+        top: 50%;
+    }
+
+    75% {
+        background: #AB9E9E;
+        right: 0;
+        bottom: 20%;
+    }
+
+    to {
+        border-radius: 100%;
+        top: 250px;
+        left: 15%;
+        bottom: 50%;
+    }
+}
+
+@-moz-keyframes circle {
+    from {
+        border-radius: 0%;
+        top: 0;
+    }
+
+    35% {
+        background: #2B2FDC;
+        left: 30%;
+        top: 50%;
+    }
+
+    75% {
+        background: #AB9E9E;
+        right: 0;
+        bottom: 20%;
+    }
+
+    to {
+        border-radius: 100%;
+        top: 250px;
+        left: 15%;
+        bottom: 50%;
+    }
+}
+
+@keyframes circle {
+    from {
+        border-radius: 0%;
+        top: 0;
+    }
+
+    35% {
+        background: #2B2FDC;
+        left: 30%;
+        top: 50%;
+    }
+
+    75% {
+        background: #AB9E9E;
+        right: 0;
+        bottom: 20%;
+    }
+
+    to {
+        border-radius: 100%;
+        top: 250px;
+        left: 15%;
+        bottom: 50%;
+    }
+}
