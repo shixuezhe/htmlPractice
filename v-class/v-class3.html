@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <link type="text/css" rel="stylesheet" href="">
+    <title>Vue class3</title>
+</head>
+<body>
+    <div id="app">
+        <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">这是文字</div>
+        <div v-bind:style="styleObject">这也是文字</div>
+        <div v-bind:style="[color, size]">这也还是文字</div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                activeColor: 'red',
+                fontSize: 30,
+                styleObject: {
+                    color: 'blue',
+                    fontSize: '30px'
+                },
+                color: {
+                    color: 'cyan'
+                },
+                size: {
+                    fontSize: '30px'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

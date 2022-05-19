@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <title>Vue class2</title>
+    <style>
+        .a {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+        .b {
+            width: 200px;
+            height: 200px;
+            background: yellow;
+        }
+
+        .c {
+            border: 2px solid black;
+        }
+
+        .d {
+            border-radius: 50%;
+        }
+        .e {
+            box-shadow: 0 0 5px 5px blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-bind:class="[a, b, rc, d>2?'d':'','e']"></div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                a: 'a',
+                b: 'b',
+                c: 0,
+                d: 3
+            },
+            computed: {
+                rc: function() {
+                    return this.c>0?'c':''
+                }
+            }
+        })
+    </script>
+</body>
+</html>

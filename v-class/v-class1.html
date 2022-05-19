@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <title>Vue class1</title>
+    <style>
+        .active {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .static {
+            border: 2px solid green;
+        }
+
+        .text-danger {
+            width: 200px;
+            height: 200px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="static" v-bind:class="{ 'active': isActive,'text-danger': hasError }"></div>
+        <div v-bind:class="classObject"></div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                isActive: true,
+                hasError: false,
+                classObject: {
+                    'active': false,
+                    'text-danger': true
+                }
+            }
+        })
+    </script>
+</body>
+</html>

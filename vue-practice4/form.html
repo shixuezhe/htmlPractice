@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <link type="text/css" rel="stylesheet" href="form.css">
+    <title>间隔样式表格</title>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <table border="1">
+            <tr>
+                <th>序号</th>
+                <th>书名</th>
+                <th>作者</th>
+                <th>价格</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(book, index) in books" :key="book.id" :class="{even : (index+1)%2==0}">
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.price }}</td>
+                <td>
+                    <button @click="deleteItem(index)">删除</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                books: [
+                    {
+                        id: 1,
+                        title: "一剪梅",
+                        price: 10,
+                        author: '李柏'
+                    },
+                    {
+                        id: 2,
+                        title: "唐诗三百首",
+                        price: 20,
+                        author: '陆幽'
+                    },
+                    {
+                        id: 3,
+                        title: "宋词",
+                        price: 30,
+                        author: '李清招'
+                    },
+                    {
+                        id: 4,
+                        title: "轻功语录",
+                        price: 40,
+                        author: '王安市'
+                    },
+                ]
+            },
+            methods: {
+                deleteItem: function(index){
+                    this.books.splice(index,1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
