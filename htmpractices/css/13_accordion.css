@@ -1,0 +1,54 @@
+body {
+    background: #444;
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    list-style: none;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+ul li {
+    float: left;
+    width: 16.666%;
+    height: 500px;
+    opacity: 0.4;
+    transition: all 0.5s ease-in-out;
+}
+
+ul li:nth-child(1) {
+    background: url("../img/p1.jpg") top center no-repeat;
+}
+
+ul li:nth-child(2) {
+    background: url("../img/p2.jpg") top center no-repeat;
+}
+
+ul li:nth-child(3) {
+    background: url("../img/p3.jpg") top center no-repeat;
+}
+
+ul li:nth-child(4) {
+    background: url("../img/p4.jpg") top center no-repeat;
+}
+
+ul li:hover, ul li:last-child {
+    width: 50%;
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+}
+
+ul li:hover ~ li:last-child {
+    width: 16.666%;
+    opacity: 0.4;
+}
+
+ul li::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+}
