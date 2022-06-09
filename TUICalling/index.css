@@ -1,0 +1,33 @@
+button {
+    background: #005997;
+    width: 130px;
+    height: 36px;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 4px;
+    border: 0;
+    margin: 0 20px;
+    cursor: pointer;
+}
+
+.login, .open, .show {
+    width: 100%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.locale, .remote {
+    width: 300px;
+    height: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.locale {
+    border: 1px solid red;
+    margin-right: 30px;
+}
+
+.remote {
+    border: 1px solid green;
+}

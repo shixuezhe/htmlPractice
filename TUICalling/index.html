@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <script src="https://file3.ih5.cn/v35/files/74365d70e3afba0ef16ae635963b47e0_493447.js"></script>
+    <script src="https://file3.ih5.cn/v35/files/2767c27b1225e9fcaa72ad817cb2b969_456420.js"></script>
+    <script src="https://file3.ih5.cn/v35/files/7415bc6207894b7cabcb737135734c02_35373.js"></script>
+    <script src="https://file3.ih5.cn/v35/files/3e4821c614afdd67117bd71eae0a5267_97450.js"></script>
+    <link type="text/css" rel="stylesheet" href="index.css">
+    </script>
+    <title>腾信音视频接入</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="login">
+            <input type="text" v-model="userID" placeholder="请输入用户名">
+            <button @click="login()">点击登录</button>
+        </div>
+        <div class="show">
+            <div id="locale" class="locale"></div>
+            <div id=" remote" class="remote"></div>
+        </div>
+        <div class="open">
+            <button @click="open()">打开本地摄像头</button>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        let options = {
+            SDKAppID: 1400686520
+        };
+        const trtcCalling = new TRTCCalling(options);
+        var locale = document.getElementById('locale');
+
+        var ve = new Vue({
+            el: "#app",
+            data: {
+                roomID: "",
+                userID: "",
+            },
+            created() {
+                this.initListener
+            },
+            destroyed() {
+                this.removeListener
+            }
+            ,
+            methods: {
+                login: function () {
+                    if (!this.userID) {
+                        alert('请输入用户名')
+                    } else {
+                        trtcCalling.login({
+                            userID: this.userID,
+                            userSig: 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwoZGxlDh4pTsxIKCzBQlK0MTAwMzCzNTIwOITElmbipQ1MzUxNzM1NDCFCKaWlGQWQQUNzOwAKqHmpGZDjSzIt3ZKD8i0jTZ1zvKt7zU0iw-It0z3NTFO6syP0C7sigzK9c7xyWvvNLU0VapFgAF8DA*'
+                        })
+                    }
+                },
+                initListener: function () {
+                    // 远端用户呼叫
+                    trtcCalling.on(trtcCalling.EVENT.INVITED, this.handleNewInvitationReceived);
+                    // 远端用户接听
+                    trtcCalling.on(trtcCalling.EVENT.USER_ACCEPT, this.handleUserAccept);
+                    // 远端用户拒绝
+                    trtcCalling.on(trtcCalling.EVENT.REJECT, this.handleInviteeReject);
+                    // ...
+                },
+                removeListener: function () {
+                    trtcCalling.off(trtcCalling.EVENT.INVITED, this.handleNewInvitationReceived);
+                    trtcCalling.off(trtcCalling.EVENT.USER_ACCEPT, this.handleUserAccept);
+                    trtcCalling.off(trtcCalling.EVENT.REJECT, this.handleInviteeReject);
+                },
+                open: function () {
+                    var openRes = trtcCalling.openCamera();
+                    if (openRes) {
+                        trtcCalling.startLocalView({
+                            userID: this.userID,
+                            videoViewDomID: locale
+                        })
+                    }
+                },
+
+            }
+        })
+    </script>
+
+</body>
+
+</html>
