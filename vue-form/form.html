@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <style>
+        .container {
+            width: 240px;
+            height: 400px;
+            margin: 100px auto;
+            border: 1px solid #ccc;
+            padding: 0 30px;
+            border-radius: 4px;
+        }
+        h2 {
+            width: 100%;
+            text-align: center;
+        }
+
+        input {
+            height: 24px;
+        }
+
+        span  {
+            display: inline-block;
+            height: 24px;
+            line-height: 24px;
+        }
+
+    </style>
+    <title>模拟登录</title>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <h2>登录</h2>
+        <div>
+            <label for="account">账号：</label>
+            <input type="text" id="account" name="account" v-model="userinfo.account">
+            <br>
+            <br>
+            <label for="password">密码：</label>
+            <input type="password" id="password" name="password" v-model="userinfo.password">
+            <br>
+            <br>
+            <label for="sex">性别：</label>
+            <input type="radio" name="sex" id="sex" value="man" v-model="userinfo.sex"><span>男</span>
+            <input type="radio" name="sex" id="sex" value="women" v-model="userinfo.sex"><span>女</span>
+            <br>
+            <br>
+            <label for="email">邮箱：</label>
+            <input type="email" name="email" id="email" v-model="userinfo.email">
+            <br>
+            <br>
+            <label for="habby">爱好：</label>
+            <input type="checkbox" value="baseketball" v-model="userinfo.habby" id="habby">篮球
+            <input type="checkbox" value="baseball" v-model="userinfo.habby" id="habby">棒球
+            <input type="checkbox" value="football" v-model="userinfo.habby" id="habby">足球
+            <br>
+            <br>
+            <button  @click="print()">提交</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                userinfo: {
+                    account: "",
+                    password: "",
+                    sex: "man",
+                    email: "",
+                    habby: []
+                }
+            },
+            methods: {
+                print: function() {
+                    console.log(this.userinfo)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
