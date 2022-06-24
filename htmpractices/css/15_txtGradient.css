@@ -1,0 +1,27 @@
+html {
+    background: #1d1f20;
+    margin: 10px auto;
+}
+
+.header {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 100px;
+    font-weight: 100;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #f35626;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+    -webkit-text-fill-color: transparent;
+    animation: change 10s linear infinite;
+}
+
+@keyframes change {
+    from {
+        filter: hue-rotate(0deg)
+    }
+    to {
+        filter: hue-rotate(360deg)
+    }
+}
