@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.6.10/vue.js"></script>
+    <link type="text/css" rel="stylesheet" href="./index.css">
+    <script src="./index.js"></script>
+    <title>Vue弹出框</title>
+</head>
+<body>
+    <section id="app">
+        <button @click="show">点击我</button>
+        <hide v-if="isShow" @close="closePop"></hide>
+    </section>
+    <template id="hiddenPopUps">
+        <div class="maskLayer">
+            <div class="popUpBox">
+                <button @click="clickClose">点击关闭</button>
+            </div>
+        </div>
+    </template>
+
+</body>
+</html>
