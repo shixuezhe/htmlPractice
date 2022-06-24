@@ -30,3 +30,4 @@ function removeDuplicateStr3(str){
 }
 
 console.log(removeDuplicateStr3(str))
+console.log('end')
