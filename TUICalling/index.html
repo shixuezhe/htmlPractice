@@ -16,36 +16,62 @@
 <body>
     <div id="app">
         <div class="login">
-            <input type="text" v-model="userID" placeholder="请输入用户名">
-            <button @click="login()">点击登录</button>
+            欢迎您：555
         </div>
         <div class="show">
             <div id="locale" class="locale"></div>
             <div id=" remote" class="remote"></div>
         </div>
         <div class="open">
-            <button @click="open()">打开本地摄像头</button>
+            <!-- <button @click="getControl">授权摄像头权限</button> -->
+            <button @click="open">打开本地摄像头</button>
+            <button @click="publish">发布本地流</button>
+            <button @click="createStream">创建本地流</button>
         </div>
 
     </div>
     <script type="text/javascript">
-        let options = {
+        const options = {
             SDKAppID: 1400686520
         };
+        const constrains = {
+            video: true,
+            audio: true
+        };
+        const userID = '555';
+        const media = navigator.mediaDevices.getUserMedia(constrains);
         const trtcCalling = new TRTCCalling(options);
-        var locale = document.getElementById('locale');
+        const client = TRTC.createClient({ mode: 'rtc', sdkAppId:1400686520, userId:'555', userSig:'eJwtzM0KwjAQBOB3yVlK*rNpLHiop2pzUKJSj4WscRElrUGk4rsbao7zzTAfdlA6eeHIKpYlnC3mTAYfni40MwBEfppb7xwZVqUF50IKyPi-8XTHoAJEmoNcRsW3ozG44DLs4wfZ8Ln2E5om74btfgOTajWeUQ2irXeqL48lt9pY7E7NFYoV*-4A-bIvQQ__' });
+        client.on('stream-added', event => {
+            const remoteStream = event.stream;
+            console.log('远端流增加: ' + remoteStream.getId());
+            //订阅远端流
+            client.subscribe(remoteStream);
+        });
+        client.on('stream-subscribed', event => {
+            const remoteStream = event.stream;
+            console.log('远端流订阅成功：' + remoteStream.getId());
+            // 播放远端流
+            remoteStream.play('remote' + remoteStream.getId());
+        });
+        trtcCalling.login({
+            userID: userID,
+            userSig: 'eJwtzM0KwjAQBOB3yVlK*rNpLHiop2pzUKJSj4WscRElrUGk4rsbao7zzTAfdlA6eeHIKpYlnC3mTAYfni40MwBEfppb7xwZVqUF50IKyPi-8XTHoAJEmoNcRsW3ozG44DLs4wfZ8Ln2E5om74btfgOTajWeUQ2irXeqL48lt9pY7E7NFYoV*-4A-bIvQQ__'
+        })
 
         var ve = new Vue({
             el: "#app",
             data: {
                 roomID: "",
-                userID: "",
+                userID: "555",
+                cameraId: '',
+                microphoneId: ''
             },
-            created() {
-                this.initListener
+            async created() {
+                this.initListener();
             },
             destroyed() {
-                this.removeListener
+                this.removeListener()
             }
             ,
             methods: {
@@ -55,7 +81,7 @@
                     } else {
                         trtcCalling.login({
                             userID: this.userID,
-                            userSig: 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwqamplDh4pTsxIKCzBQlK0MTAwMzCzNTIwOITElmbipQ1MzUxNzCyNDQECKaWlGQWQQUNzOwAKqHmpGZDjQzxcTQzSUvIM-JPcrCrMg81cvIzdQjyLu0MsnHMaIg0SXJOzPfODwtKsMx21apFgDkZC8j'
+                            userSig: 'eJwtzM0KwjAQBOB3yVlK*rNpLHiop2pzUKJSj4WscRElrUGk4rsbao7zzTAfdlA6eeHIKpYlnC3mTAYfni40MwBEfppb7xwZVqUF50IKyPi-8XTHoAJEmoNcRsW3ozG44DLs4wfZ8Ln2E5om74btfgOTajWeUQ2irXeqL48lt9pY7E7NFYoV*-4A-bIvQQ__'
                         })
                     }
                 },
@@ -78,11 +104,61 @@
                     if (openRes) {
                         trtcCalling.startLocalView({
                             userID: this.userID,
-                            videoViewDomID: locale
+                            videoViewDomID: 'locale'
                         })
                     }
                 },
+                startLocalView: function(){
+                    trtcCalling.startLocalView({
+                        userID: this.userID,
+                        videoViewDomID: 'locale'
+                    })
+                },
+                createStream: function() {
+                    TRTC.getCameras().then((result) => {
+                        this.cameraId = result[0].deviceId
+                    });
+                    cameras = TRTC.getMicrophones().then((result) => {
+                        this.microphoneId = result[0].deviceId
+                    });
+                    localStream = TRTC.createStream({
+                        userId: this.userID,
+                        audio: true,
+                        video: true,
+                        cameraId: this.cameraId,
+                        microphoneId: this.microphoneId
+                    });
+                    try {
+                        client.join({ roomId: 8888 });
+                        console.log('进房成功');
+                    } catch (error) {
+                        console.error('进房失败 ' + error);
+                    };
 
+                    localStream.setVideoProfile({ width: 640, height: 480, frameRate: 15, bitrate: 900});
+                    localStream.initialize().then(() => {
+                        console.log('本地流init成功');
+                        localStream.play('locale').then(() => {
+                            console.log('play成功')
+                        }).catch((e) => {
+                            console.log('play失败  '+e.message);
+                        });
+                    }).catch((e) => {
+                        console.log('本地流init失败：'+e.message)
+                    })
+                },
+                show: function(){
+                    console.log('展示远端画面',this.userID)
+                    trtcCalling.startRemoteView({
+                        userID: this.userID,
+                        videoViewDomID: 'remote'
+                    })
+                },
+                publish: function() {
+                    client.publish(localStream).then((result) => {
+                        console.log('发布本地流',result)
+                    });
+                }
             }
         })
     </script>
