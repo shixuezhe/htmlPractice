@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(241, 241, 241, 0.5);
+}
+
+.title {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.pic_small {
+    width: 300px;
+    height: 300px;
+    box-shadow: 0 0 5px #ccc;
+    position: relative;
+    top: 20px;
+    left: 20px;
+    background: url(small.jpg) no-repeat;
+    background-size: contain;
+}
+
+.mask {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(255, 174, 0, 0.5);
+    cursor: move;
+    position: relative;
+}
+
+.pic_big {
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    left: 320px;
+    display: none;
+}
+
+.imgSelf {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+}
