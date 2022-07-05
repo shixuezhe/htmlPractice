@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .a {
+            width: 200px;
+            height: 200px;
+            background-color: burlywood;
+            margin: 100px auto;
+            position: relative;
+            border: 10px solid red;
+            padding: 10px;
+        }
+
+        .b {
+            width: 100px;
+            height: 100px;
+            background-color: greenyellow;
+            position: absolute;
+            top: 20px;
+            left: 50px;
+        }
+    </style>
+    <title>css练习-offset</title>
+</head>
+<body>
+    <div class="a">
+        <div class="b">
+        </div>
+    </div>
+    <script>
+        var a = document.querySelector(".a");
+        var b = document.querySelector(".b");
+        //offsetWidth和offsetHeight都是包含内外边框的
+        console.log('a.offsetParent', a.offsetParent);
+        console.log('a.offsetWidth', a.offsetWidth);
+        console.log('a.offsetHeight', a.offsetHeight);
+        //offsetLeft和offsetTop都是到边框位置开始，从父级定位开始算的左边和上边位置（父级定位忽视边框）
+        console.log('a.offsetLeft', a.offsetLeft);
+        console.log('a.offsetTop', a.offsetTop);
+        //如果b的父级a没有定位的话，将会再往上找，直到找到位置，这里会找到body
+        console.log('b.offsetParent', b.offsetParent);
+        console.log('b.offsetLeft', b.offsetLeft);
+        console.log('b.offsetTop', b.offsetTop);
+    </script>
+</body>
+</html>

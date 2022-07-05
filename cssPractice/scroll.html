@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .a {
+            width: 200px;
+            height: 200px;
+            background-color: burlywood;
+            margin: 100px auto;
+            position: relative;
+            border: 10px solid red;
+            padding: 10px;
+            overflow: scroll;
+        }
+        p {
+            white-space: nowrap;
+        }
+    </style>
+    <title>css练习-croll</title>
+</head>
+<body>
+    <div class="a">
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+        <p>这里是内容：春眠不觉晓！！！</p>
+    </div>
+    <script>
+        var a = document.querySelector(".a");
+        //scrollwidth和scrollHeight是元素可滚动区域的总宽度和长度
+        console.log('a.clientWidth', a.clientWidth);
+        console.log('a.clientHeight', a.clientHeight);
+        console.log('a.scrollwidth', a.scrollWidth);
+        console.log('a.scrollHeight', a.scrollHeight);
+        //scrollTop和scrollLeft等于是内容移动的距离，其参考点分别是父元素的外边框内侧，即不含外边框的起点
+        a.addEventListener('scroll', function(e){
+            console.log(a.scrollTop);
+            console.log(a.scrollLeft);
+        })
+    </script>
+</body>
+</html>

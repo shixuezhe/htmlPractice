@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .a {
+            width: 200px;
+            height: 200px;
+            background-color: burlywood;
+            margin: 100px auto;
+            position: relative;
+            border: 10px solid red;
+            padding: 10px;
+        }
+
+        .b {
+            width: 100px;
+            height: 100px;
+            background-color: greenyellow;
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            padding: 5px;
+        }
+    </style>
+    <title>css练习-client</title>
+</head>
+<body>
+    <div class="a">
+        <div class="b">
+        </div>
+    </div>
+    <script>
+        var a = document.querySelector(".a");
+        var b = document.querySelector(".b");
+        //clientWidth和clientHeight都是不包含外边框的，但是包含内边框
+        console.log('a.clientWidth', a.clientWidth);
+        console.log('a.clientHeight', a.clientHeight);
+        //clientLeft和clientTop等于是上外边框和左外边框的宽度
+        console.log('a.clientLeft', a.clientLeft);
+        console.log('a.clientTop', a.clientTop);
+        console.log('-------------------------');
+        console.log('b.clientWidth', b.clientWidth);
+        console.log('b.clientHeight', b.clientHeight);
+        console.log('b.clientLeft', b.clientLeft);
+        console.log('b.clientTop', b.clientTop);
+    </script>
+</body>
+</html>
