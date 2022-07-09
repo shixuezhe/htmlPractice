@@ -29,7 +29,8 @@ body {
     position: absolute;
     border-radius: 20px;
     overflow: hidden;
-    transform: translateZ(calc(-30px * var(--i))) translateY(calc(-20px * var(--i)))
+    transform: translateZ(calc(-30px * var(--i)))
+    translateY(calc(-20px * var(--i)))
     rotate(calc(-4deg * var(--i)));
     filter: drop-shadow(2px 2px 10px rgba(0,0,0,0.3));
     cursor: pointer;
