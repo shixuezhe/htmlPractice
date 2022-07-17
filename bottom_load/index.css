@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 1200px;
+    min-height: 100vh;
+    background-color: aliceblue;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.container div {
+    width: 300px;
+    height: 300px;
+    background: palevioletred;
+    margin: 50px;
+}
