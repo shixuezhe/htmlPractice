@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>摇摆球</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fafafa;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        .ball {
+            width: 10px;
+            height: 10px;
+            background-color: black;
+            border-radius: 100%;
+            position: relative;
+        }
+
+        .ball:first-child {
+            transform: translateX(-15px) translateY(-10px);
+            animation: swing1 0.8s linear infinite alternate;
+        }
+
+        .ball:last-child {
+            transform: translateX(15px) translateY(-10px);
+            animation: swing2 0.8s linear infinite alternate;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes swing1 {
+            0% {
+                transform: translateX(-15px) translateY(-10px);
+            }
+            100% {
+                transform: translateX(0px) translateY(0px);
+            }
+        }
+        @keyframes swing2 {
+            0% {
+                transform: translateX(15px) translateY(-10px);
+            }
+            100% {
+                transform: translateX(0px) translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+    </div>
+</body>
+</html>
